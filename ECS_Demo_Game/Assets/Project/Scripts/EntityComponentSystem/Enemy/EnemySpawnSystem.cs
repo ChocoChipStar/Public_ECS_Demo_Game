@@ -32,6 +32,11 @@ public partial struct EnemySpawnSystem : ISystem
         state.RequireForUpdate<TitleConfigData>();
     }
 
+    private void OnStartRunning(ref SystemState state)
+    {
+        isExecute = false;
+    }
+
     [BurstCompile]
     private void OnUpdate(ref SystemState state)
     {
