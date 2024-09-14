@@ -13,6 +13,8 @@ public class PlayerAuthoring : MonoBehaviour
     {
         public override void Bake(PlayerAuthoring authoring)
         {
+            AddComponent(GetEntity(TransformUsageFlags.None), new PlayerTag());
+
             var data = new PlayerParamsData()
             {
                 health = authoring.health,
@@ -22,6 +24,8 @@ public class PlayerAuthoring : MonoBehaviour
         }
     }
 }
+
+public struct PlayerTag : IComponentData { }
 
 public struct PlayerParamsData : IComponentData
 {

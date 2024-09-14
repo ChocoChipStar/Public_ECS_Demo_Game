@@ -9,19 +9,20 @@ public class BulletDataAuthoring : MonoBehaviour
     {
         public override void Bake(BulletDataAuthoring authoring)
         {
-            var bulletDataTAG = new BulletDataTAG();
-            AddComponent(GetEntity(TransformUsageFlags.Dynamic), bulletDataTAG);
+            AddComponent(GetEntity(TransformUsageFlags.None), new BulletDataTag());
 
             var prefabData = new PrefabData
             {
                 bulletPrefabEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
             };
             AddComponent(GetEntity(TransformUsageFlags.Dynamic), prefabData);
+
+            AddBuffer<BulletBuffer>(GetEntity(TransformUsageFlags.None));
         }
     }
 }
 
-public struct BulletDataTAG : IComponentData { }
+public struct BulletDataTag : IComponentData { }
 
 public struct PrefabData : IComponentData 
 {
